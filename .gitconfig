@@ -1,6 +1,13 @@
 [alias]
 	st = status
 	co = checkout
+  ci = commit
+  br = branch
 [user]
 	name = BanMasanobu
 	email = babababandits@gmail.com
+[core]
+	excludesfile = /Users/tomonomasanobu/.gitignore
+[url "github"]
+  # InsteadOf = http://github.com/
+  # InsteadOf = git@github.com:
