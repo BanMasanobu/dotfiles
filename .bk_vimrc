@@ -1,5 +1,3 @@
-" = 基本設定
-
 set t_Co=256
 set laststatus=2                                  " 常にステータスラインを表示する
 set ambiwidth=double                              " vimに全角を解釈させる
@@ -27,7 +25,7 @@ set smartindent                                   " 新しい行を開始した�
 set directory-=.
 set smarttab
 set textwidth=0                                   " 自動折り返しをしない
-set background=dark
+set background=light
 set clipboard=unnamed
 set timeoutlen=300                                " KeyMapタイムアウト待ち時間
 set incsearch                                     " [検索]入力の度に検索する
@@ -35,8 +33,6 @@ set nowrapscan                                    " [検索]先頭にループ�
 set hlsearch                                      " [検索]文字をハイライトする
 set noignorecase                                  " [検索]大文字小文字を区別しない
 set smartcase                                     " [検索]大文字を含んでいたら大文字小文字を区別する
-" ESCキー2度押しでハイライトの切り替え
-nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 set guioptions+=a
 set ttymouse=xterm2
 set whichwrap=b,s,h,l,<,>,[,]
@@ -126,12 +122,11 @@ NeoBundle 'kchmck/vim-coffee-script.git'
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'kana/vim-textobj-user.git'
 NeoBundle 'kana/vim-textobj-syntax.git'
-" NeoBundle 'thinca/vim-textobj-function-javascript'
 NeoBundle 'kana/vim-textobj-lastpat.git'
 NeoBundle 'kana/vim-textobj-indent.git'
 NeoBundle 'kana/vim-textobj-function.git'
 NeoBundle 'kana/vim-textobj-fold.git'
-" NeoBundle 'thinca/vim-textobj-plugins.git'
+NeoBundle 'thinca/vim-textobj-plugins.git'
 NeoBundle 'vim-scripts/textobj-rubyblock.git'
 NeoBundle 'vim-scripts/textobj-entire.git'
 NeoBundle 'vim-scripts/textobj-jabraces.git'
@@ -148,7 +143,6 @@ NeoBundle 'yuroyoro/yuroyoro256.vim'
 " }
 
 " JavaScript {
-NeoBundle 'kana/vim-textobj-user.git'
 NeoBundle 'teramako/jscomplete-vim.git'
 NeoBundle 'vim-scripts/JavaScript-syntax.git'
 " }
@@ -163,8 +157,6 @@ NeoBundle 'vim-scripts/dbext.vim'
 NeoBundle 'taichouchou2/vim-rails'
 NeoBundle 'romanvbabenko/rails.vim'
 NeoBundle 'taq/vim-rspec'
-" VimからRSecを実行する
-NeoBundle "skwp/vim-rspec.git"
 NeoBundle 'basyura/unite-rails.git'
 NeoBundle 'taichouchou2/vim-rsense'
 NeoBundle 'ujihisa/neco-ruby.git'
@@ -201,64 +193,12 @@ NeoBundle 'yomi322/unite-tweetvim.git'
 " Lingr {
 NeoBundle 'tsukkee/lingr-vim.git'
 " }
-" vue用
-NeoBundle 'Shougo/context_filetype.vim'
-NeoBundle 'osyo-manga/vim-precious'
-" robocop用
-NeoBundle 'scrooloose/syntastic'
-" PlantUML用
-NeoBundle "aklt/plantuml-syntax"
-" eslint
-" NeoBundle 'scrooloose/syntastic'
-" NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
-NeoBundle 'w0rp/ale'
+
 call neobundle#end()
 
-autocmd BufNewFile,BufRead *.vue set filetype=html
 " Rsense
 let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
 let g:rsenseUseOmniFunc = 1
-
-" eslint
-" ここから下は Syntastic のおすすめの設定
-" ref. https://github.com/scrooloose/syntastic#settings
-let g:ale_emit_conflict_warnings = 0
-
-" エラー行に sign を表示
-" let g:syntastic_enable_signs = 1
-" location list を常に更新
-" let g:syntastic_always_populate_loc_list = 0
-" location list を常に表示
-" let g:syntastic_auto_loc_list = 0
-" ファイルを開いた時にチェックを実行する
-" let g:syntastic_check_on_open = 1
-" :wq で終了する時もチェックする
-" let g:syntastic_check_on_wq = 0
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\}
-
-" " 構文エラー行に「>>」を表示
-" let g:syntastic_enable_signs = 1
-" " 他のVimプラグインと競合するのを防ぐ
-" let g:syntastic_always_populate_loc_list = 1
-" " 構文エラーリストを非表示
-" let g:syntastic_auto_loc_list = 0
-" " ファイルを開いた時に構文エラーチェックを実行する
-" let g:syntastic_check_on_open = 1
-" " 「:wq」で終了する時も構文エラーチェックする
-" let g:syntastic_check_on_wq = 1
-"
-" " Javascript用. 構文エラーチェックにESLintを使用
-" let g:syntastic_javascript_checkers=['eslint']
-" " Javascript以外は構文エラーチェックをしない
-" let g:syntastic_mode_map = { 'mode': 'passive',
-"                            \ 'active_filetypes': ['javascript'],
-"                            \ 'passive_filetypes': [] }
-
-" robocop
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
-let g:syntastic_ruby_checkers=['rubocop', 'mri']
 
 " 挿入モードでTABを挿入するとき、代わりに適切な数の空白を使う
 set expandtab
@@ -274,7 +214,7 @@ filetype plugin indent on
 " --------------------
 " yuroyoro256.vim
 " --------------------
-" colorscheme yuroyoro256
+colorscheme yuroyoro256
 
 " ターミナルタイプによるカラー設定
 if &term =~ "xterm-256color" || "screen-256color"
@@ -317,7 +257,7 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " Unite bookmarkで開くときのアクションのデフォルトをVimfilerに変更
-" call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
+call unite#custom_default_action('source/bookmark/directory' , 'vimfiler')
 
 
 " --------------------
@@ -363,9 +303,9 @@ au BufRead,BufNewFile *.snip  set filetype=snippet
 " let g:neocomplcache_snippets_dir = $HOME.'/.vim/snippets'
 let g:neosnippet#snippets_directory= $HOME.'/.vim/snippets'
 
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" <TAB>: completion.                                         
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"   
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>" 
 
 " Plugin key-mappings.
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -402,10 +342,6 @@ augroup RSpec
 augroup END
 
 let g:quickrun_config['ruby.rspec'] = {'command': 'rspec', 'cmdopt': '--format progress -I .', 'outputter': 'buffer:filetype=rspec-result'}
-
-" let g:RspecKeyma,=0
-nnoremap <silent> ,rs :RunSpec<CR>
-nnoremap <silent> ,rl :RunSpecLine<CR>
 
 " --------------------
 " tcomment
@@ -446,10 +382,8 @@ let g:rsenseHome = expand('~/rsense-0.3')
 let g:rsenseUseOmniFunc = 1
 
 if !exists('g:neocomplcache_omni_patterns')
-
   let g:neocomplcache_omni_patterns = {}
 endif
-
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 
@@ -482,5 +416,5 @@ if has("cscope")
   set csverb
   set cscopequickfix=s-,c-,d-,i-,t-,e-
 endif
-
 syntax on
+
